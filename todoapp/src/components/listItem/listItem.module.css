@@ -1,0 +1,12 @@
+.item{
+    display: flex;
+    align-items: flex-start;
+}
+.checkbox {
+    display: inline-block;
+    width: 20px; 
+    height: 20px;
+}
+.checkbox:checked {
+    color: #b11d1d;
+}
