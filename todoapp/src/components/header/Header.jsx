@@ -1,10 +1,10 @@
 import React from 'react';
-import './header.css'
+import './header.module.css'
 
-function Header() {
+function Header({title = "To Do List"}) {
     return (
         <header>
-            <h1>To Do List</h1>
+            <h1>{title}</h1>
         </header>
     );
 }

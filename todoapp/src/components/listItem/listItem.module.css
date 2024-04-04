@@ -1,12 +1,15 @@
-.item{
-    display: flex;
-    align-items: flex-start;
-}
+
 .checkbox {
-    display: inline-block;
     width: 20px; 
     height: 20px;
 }
 .checkbox:checked {
-    color: #b11d1d;
+color: #b11d1d;
+}
+button:hover{
+    background-color: aquamarine;
+}
+.item:hover{
+    background-color: rgb(212, 232, 113);
+    border-radius: 10px;
 }

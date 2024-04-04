@@ -1,9 +1,9 @@
 
-
-button{
-    margin-left: 10px;
+.addButton{
+    margin-left: 40px;
+    margin-top: -20px;
     border-radius: 10px;
     padding: 5px;
-    background-color: rgb(214, 145, 41);
+    background-color: rgb(52, 159, 61);
     box-shadow: 0 4px 9px rgba(0, 0, 0, 0.734);
 }
