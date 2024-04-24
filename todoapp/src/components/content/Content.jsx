@@ -1,41 +1,43 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ListItem from '../listItem/ListItem';
-import styles from './content.module.css';
-import AddButton from '../addbutton/AddButton.jsx';
+import styles from './Сontent.module.css';
+import AddItem from '../AddItem/AddItem.jsx';
+import useLocalStorage from '../../hooks/useLocalStorage.js';
 
 function Content() {
-  // Используем хук useState для хранения состояния списка элементов
-  const [items, setItems] = useState([]);
 
-  // Используем хук useEffect для загрузки данных из локального хранилища при монтировании компонента
-  useEffect(() => {
-    // Получаем данные из локального хранилища
-    const storeData = localStorage.getItem('toDoList');
-    // Если данные есть в локальном хранилище, устанавливаем их как состояние items
-    if (storeData) {
-      setItems(JSON.parse(storeData));
-    } else {
-      // Если данных нет, устанавливаем начальное значение списка
-      setItems([
-        { id: 1, name: 'Посмотреть урок по Реакту', isChecked: false, color: 'red' },
-        { id: 2, name: 'Делать домашку', isChecked: true, color: 'blue' },
-        { id: 3, name: 'Позаниматься йогой', isChecked: false, color: 'green' },
-        { id: 4, name: 'Написать список продуктов', isChecked: false, color: 'black' }
-      ]);
-    }
-  }, []); // Пустой массив зависимостей гарантирует выполнение useEffect только при монтировании компонента
+  const [items, setItems] = useLocalStorage("toDoList", [])
+  const [newItem, setNewItem] = useState('')
 
-  // Возвращаем JSX разметку с отображением элементов списка и кнопкой добавления
+const deleteItem = (id) => {
+const updatedList = items.filter((item) => item.id !== id);
+setItems(updatedList);
+}
+
+const addItem =(e) =>{
+  e.preventDefault()
+  const id = items.lenght ? items[items.length - 1].id + 1 : 1;
+  const itemToAdd = {id, checked: false, name: newItem}
+  const updatedList = [...items, itemToAdd];
+  setItems(updatedList);
+  setNewItem('');
+}
+
+
   return (
     <main className={styles.content}>
       <ul>
-        {items.map(item => (
-          <ListItem key={item.id} name={item.name} color={item.color} />
-        ))}
+        {
+        items.map((item) => 
+          <ListItem key={item.id} name={item.name} color={item.color} 
+          deleteItem={() => deleteItem(item.id)}/>
+        )
+      }
       </ul>
-      <AddButton />
+      <AddItem NewItem={newItem} setNewItem={setNewItem} addItem={addItem}/>
     </main>
   );
 }
 
 export default Content;
+

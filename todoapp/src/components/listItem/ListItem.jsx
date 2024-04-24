@@ -1,25 +1,27 @@
-import { useState} from'react';
+
 import React from 'react';
-import DeleteButton from '../deletebutton/DeleteButton';
-import styles from './listItem.module.css';
+import { useState} from'react';
+import styles from './ListItem.module.css';
 
-
-function ListItem({ name, color}) {
+function ListItem(props) {
     const [checked, setChecked] = useState(false); 
     const handleCheckedState = () => {
         setChecked(!checked);
     }
     return (
-        <div className={styles.item}>
+        <div className={styles.item}{...props}>
             <input type="checkbox" className="checkbox" 
-            onClick={handleCheckedState}>
+            onChange={handleCheckedState}>
             </input>
             <label style = {checked
                 ? {textDecorationLine: "line-through"}
-                : {textDecorationLine: "none"}}>{name}</label>
-            <DeleteButton className={styles.button}/>
+                : {textDecorationLine: "none"}}>{props.name}</label>
+            <button className={styles.button}
+            onClick={() => props.deleteItem(props.id)}>
+            Удалить</button>
         </div>
     );
 }
 
 export default ListItem;
+

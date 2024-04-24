@@ -13,3 +13,11 @@ button:hover{
     background-color: rgb(212, 232, 113);
     border-radius: 10px;
 }
+
+.button {
+    margin-left: 10px;
+    border-radius: 10px;
+    padding: 3px;
+    background-color: rgb(204, 147, 32);
+    box-shadow: 0 4px 9px rgba(0, 0, 0, 0.734);
+}
